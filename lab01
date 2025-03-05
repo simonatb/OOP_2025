@@ -1,0 +1,92 @@
+#pragma once
+#include <iostream>
+#include <string>
+#pragma warning (disable: 4996) // we use this to disable error for using strcpy
+using namespace std;
+
+namespace {
+	constexpr int TITLE_LENGTH = 64;
+	constexpr int AUTHOR_LENGTH = 32;
+	constexpr int MAX_BOOKS = 10;
+}
+
+enum BookStatus {
+	Available,
+	Borrowed,
+	Reserved
+};
+
+struct Book {
+	char title[TITLE_LENGTH];
+	char author[AUTHOR_LENGTH];
+	int publicationYear;
+	BookStatus status;
+};
+
+struct Library {
+	char name[AUTHOR_LENGTH];
+	Book books[MAX_BOOKS];
+	int booksCount = 0;
+};
+
+Book createBook(const char* bookTitle, const char* bookAuthor, int bookYear) {
+	if (!bookTitle || !bookAuthor) {
+		return {};
+	}
+	Book book;
+	strcpy(book.author, bookAuthor);
+	strcpy(book.title, bookTitle);
+	book.publicationYear = bookYear;
+	book.status = BookStatus::Available;
+	return book;
+}
+
+bool addBook(Library& library, const char* bookTitle, const char* bookAuthor, int bookYear) {
+	if (library.booksCount >= MAX_BOOKS) {
+		return false;
+	}
+	library.books[library.booksCount] = createBook(bookTitle, bookAuthor, bookYear);
+	library.booksCount++;
+	return true;
+}
+
+bool borrowBook(Book& book) {
+	if (book.status == BookStatus::Available) {
+		book.status = BookStatus::Borrowed;
+		return true;
+	}
+	return false;
+}
+
+bool reserveBook(Book& book) {
+	if (book.status == BookStatus::Available) {
+		book.status = BookStatus::Reserved;
+		return true;
+	}
+	return false;
+}
+
+void printStatus(BookStatus status) {
+	switch (status)
+	{
+	case BookStatus::Available:
+		std::cout << "Available";
+		break;
+	case BookStatus::Borrowed:
+		std::cout << "Borrowed";
+		break;
+	case BookStatus::Reserved:
+		std::cout << "Reserved";
+		break;
+	default:
+		std::cout << "Unknown";
+	}
+}
+
+void printLibrary(const Library& library) {
+	for (int i = 0; i < library.booksCount; i++) {
+		cout << library.books[i].title << " ";
+		printStatus(library.books[i].status);
+		cout << endl;
+	}
+}
