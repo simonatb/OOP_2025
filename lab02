@@ -1,0 +1,53 @@
+#pragma once
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+namespace {
+	constexpr int BUFFER_SIZE = 1024;
+}
+
+int getFileSize(const char* filename) {
+	std::ifstream file(filename);
+	if (!file.is_open()) {
+		return -1;
+	}
+	size_t currPos = file.tellg(); //gets current pos
+	file.seekg(0, std::ios::end); //goes to the last position
+	size_t fileSize = file.tellg(); //the last position gives us the size
+	file.seekg(currPos); //returning to the position we were on
+	return fileSize;
+}
+
+int getLines(const char* filename) {
+	std::ifstream file(filename);
+	if (!file.is_open()) {
+		return -1;
+	}
+	int counter = 0;
+	char buffer[BUFFER_SIZE];
+	while (true) {
+		file.getline(buffer, BUFFER_SIZE);
+		if (file.eof()) {
+			break;
+		}
+		counter++;
+	}
+	return counter;
+}
+
+void printCode(const char* filename) {
+	std::ifstream file(filename);
+	if (!file.is_open()) {
+		return;
+	}
+	int counter = 0;
+	char buffer[BUFFER_SIZE];
+	while (true) {
+		file.getline(buffer, BUFFER_SIZE);
+		if (file.eof()) {
+			break;
+		}
+		cout << buffer << '\n';
+	}
+}
