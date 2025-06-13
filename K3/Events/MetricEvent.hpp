@@ -2,7 +2,7 @@
 #include "Event.hpp"
 
 TP
-class MetricEvent : public virtual Event<T> {
+class MetricEvent : public Event<T> {
 public:
 	MetricEvent(const T& data);
 	void print() const override;
