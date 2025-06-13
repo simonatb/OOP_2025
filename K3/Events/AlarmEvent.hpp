@@ -2,7 +2,7 @@
 #include "Event.hpp"
 
 TP
-class AlarmEvent : public virtual Event<T> {
+class AlarmEvent : public Event<T> {
 public:
 	AlarmEvent(const T& data);
 	void print() const override;
