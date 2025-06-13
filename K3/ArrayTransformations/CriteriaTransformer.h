@@ -3,7 +3,7 @@
 #define TP template <typename T>
 
 TP
-class CriteriaTransformer : virtual public ArrayTransformer {
+class CriteriaTransformer : public ArrayTransformer {
 public:
 	void transform(int* arr, size_t size) override;
 	bool operator()(int number) const;
