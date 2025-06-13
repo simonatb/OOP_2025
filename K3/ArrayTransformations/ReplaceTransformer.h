@@ -6,7 +6,7 @@ struct Pair {
 	int number;
 };
 
-class ReplaceTransformer : virtual public ArrayTransformer {
+class ReplaceTransformer : public ArrayTransformer {
 private:
 	Pair* pairs;
 	size_t pairsCount;
