@@ -1,7 +1,7 @@
 #pragma once
 #include "ArrayTransformer.h"
 
-class SwapTransformer : virtual public ArrayTransformer {
+class SwapTransformer : public ArrayTransformer {
 private:
 	size_t leftIdx = 0;
 	size_t rightIdx = 0;
