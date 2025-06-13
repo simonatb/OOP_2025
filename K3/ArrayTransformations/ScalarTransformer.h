@@ -1,7 +1,7 @@
 #pragma once
 #include "ArrayTransformer.h"
 
-class ScalarTransformer : virtual public ArrayTransformer {
+class ScalarTransformer : public ArrayTransformer {
 private:
 	int scalar = 0;
 public:
