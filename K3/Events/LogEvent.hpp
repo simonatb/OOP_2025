@@ -2,7 +2,7 @@
 #include "Event.hpp"
 
 TP
-class LogEvent : public virtual Event<T> {
+class LogEvent : public Event<T> {
 public:
 	LogEvent(const T& data);
 	void print() const override;
