@@ -62,7 +62,7 @@ void Farm::addAnimal(Animal* animal) {
 	farm[count++] = animal;
 }
 
-void Farm::addAnimal(const Animal* animal) {
+void Farm::addAnimal(const Animal& animal) {
 	if (!animal) {
 		return;
 	}
