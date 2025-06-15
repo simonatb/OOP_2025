@@ -67,7 +67,7 @@ public:
 	~Farm();
 
 	void addAnimal(Animal* animal);
-	void addAnimal(const Animal* animal);
+	void addAnimal(const Animal& animal);
 	void resize();
 
 	void roarAll() const;
